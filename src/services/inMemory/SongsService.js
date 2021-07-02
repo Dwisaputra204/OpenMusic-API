@@ -4,7 +4,7 @@ const { nanoid } = require('nanoid');
 const InvariantError = require('../../exceptions/InvariantError');
 const NotFoundError = require('../../exceptions/NotFoundError');
 
-class NotesService {
+class SongsService {
   constructor() {
     this._songs = [];
   }
@@ -13,11 +13,11 @@ class NotesService {
     title, year, performer, genre, duration,
   }) {
     const id = nanoid(16);
-    const createdAt = new Date().toISOString();
-    const updatedAt = createdAt;
+    const insertedAt = new Date().toISOString();
+    const updatedAt = insertedAt;
 
     const newSong = {
-      id, title, year, performer, genre, duration, createdAt, updatedAt,
+      id, title, year, performer, genre, duration, insertedAt, updatedAt,
     };
 
     this._songs.push(newSong);
@@ -40,13 +40,13 @@ class NotesService {
     return songs;
   }
 
-  // getNoteById(id) {
-  //   const note = this._notes.filter((n) => n.id === id)[0];
-  //   if (!note) {
-  //     throw new NotFoundError('Catatan tidak ditemukan');
-  //   }
-  //   return note;
-  // }
+  getSongById(id) {
+    const song = this._songs.filter((n) => n.id === id)[0];
+    if (!song) {
+      throw new NotFoundError('Song tidak ditemukan');
+    }
+    return song;
+  }
 
   // editNoteById(id, { title, body, tags }) {
   //   const index = this._notes.findIndex((note) => note.id === id);
@@ -75,4 +75,4 @@ class NotesService {
   // }
 }
 
-module.exports = NotesService;
+module.exports = SongsService;

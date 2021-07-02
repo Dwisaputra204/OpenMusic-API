@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 const Hapi = require('@hapi/hapi');
 const songs = require('./api/songs');
-const NotesService = require('./services/inMemory/NotesService');
-const NotesValidator = require('./validator/notes');
+const SongsService = require('./services/inMemory/SongsService');
+const SongsValidator = require('./validator/songs');
 
 const init = async () => {
-  const notesService = new NotesService();
+  const songsService = new SongsService();
 
   const server = Hapi.server({
 
@@ -21,8 +21,8 @@ const init = async () => {
   await server.register({
     plugin: songs,
     options: {
-      service: notesService,
-      validator: NotesValidator,
+      service: songsService,
+      validator: SongsValidator,
     },
   });
 
