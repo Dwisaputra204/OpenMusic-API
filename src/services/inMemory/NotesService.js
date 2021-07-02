@@ -5,29 +5,31 @@ const NotFoundError = require('../../exceptions/NotFoundError');
 
 class NotesService {
   constructor() {
-    this._notes = [];
+    this._songs = [];
   }
 
-  addNote({ title, body, tags }) {
+  addSong({
+    title, year, performer, genre, duration,
+  }) {
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
 
-    const newNote = {
-      title, tags, body, id, createdAt, updatedAt,
+    const newSong = {
+      title, year, performer, genre, duration, id, createdAt, updatedAt,
     };
 
-    this._notes.push(newNote);
-    const isSuccess = this._notes.filter((note) => note.id === id).length > 0;
+    this._songs.push(newSong);
+    const isSuccess = this._songs.filter((song) => song.id === id).length > 0;
     if (!isSuccess) {
-      throw new InvariantError('Catatan gagal ditambahkan');
+      throw new InvariantError('song gagal ditambahkan');
     }
 
     return id;
   }
 
   getNotes() {
-    return this._notes;
+    return this._songs;
   }
 
   getNoteById(id) {

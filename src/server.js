@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 const Hapi = require('@hapi/hapi');
-const notes = require('./api/notes');
+const songs = require('./api/songs');
 const NotesService = require('./services/inMemory/NotesService');
 const NotesValidator = require('./validator/notes');
 
@@ -19,7 +19,7 @@ const init = async () => {
   });
 
   await server.register({
-    plugin: notes,
+    plugin: songs,
     options: {
       service: notesService,
       validator: NotesValidator,
