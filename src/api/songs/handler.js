@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 const ClientError = require('../../exceptions/ClientError');
 
@@ -8,7 +7,7 @@ class NotesHandler {
     this._validator = validator;
 
     this.postSongHandler = this.postSongHandler.bind(this);
-    // this.getSongsHandler = this.getSongsHandler.bind(this);
+    this.getSongsHandler = this.getSongsHandler.bind(this);
     // this.getSongByIdHandler = this.getSongByIdHandler.bind(this);
     // this.putSongByIdHandler = this.putSongByIdHandler.bind(this);
     // this.deleteSongByIdHandler = this.deleteSongByIdHandler.bind(this);
@@ -55,15 +54,15 @@ class NotesHandler {
     }
   }
 
-  // getSongsHandler() {
-  //   const notes = this._service.getNotes();
-  //   return {
-  //     status: 'success',
-  //     data: {
-  //       notes,
-  //     },
-  //   };
-  // }
+  getSongsHandler() {
+    const songs = this._service.getSongs();
+    return {
+      status: 'success',
+      data: {
+        songs,
+      },
+    };
+  }
 
   // getSongByIdHandler(request, h) {
   //   try {
