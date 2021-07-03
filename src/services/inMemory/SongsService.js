@@ -48,31 +48,35 @@ class SongsService {
     return song;
   }
 
-  // editNoteById(id, { title, body, tags }) {
-  //   const index = this._notes.findIndex((note) => note.id === id);
+  editSongById(id, {
+    title, year, performer, genre, duration,
+  }) {
+    const index = this._songs.findIndex((song) => song.id === id);
 
-  //   if (index === -1) {
-  //     throw new NotFoundError('Gagal memperbarui catatan. Id tidak ditemukan');
-  //   }
+    if (index === -1) {
+      throw new NotFoundError('Gagal memperbarui song. Id tidak ditemukan');
+    }
 
-  //   const updatedAt = new Date().toISOString();
+    const updatedAt = new Date().toISOString();
 
-  //   this._notes[index] = {
-  //     ...this._notes[index],
-  //     title,
-  //     tags,
-  //     body,
-  //     updatedAt,
-  //   };
-  // }
+    this._songs[index] = {
+      ...this._songs[index],
+      title,
+      year,
+      performer,
+      genre,
+      duration,
+      updatedAt,
+    };
+  }
 
-  // deleteNoteById(id) {
-  //   const index = this._notes.findIndex((note) => note.id === id);
-  //   if (index === -1) {
-  //     throw new NotFoundError('Catatan gagal dihapus. Id tidak ditemukan');
-  //   }
-  //   this._notes.splice(index, 1);
-  // }
+  deleteSongById(id) {
+    const index = this._songs.findIndex((song) => song.id === id);
+    if (index === -1) {
+      throw new NotFoundError('lagu gagal dihapus. Id tidak ditemukan');
+    }
+    this._songs.splice(index, 1);
+  }
 }
 
 module.exports = SongsService;

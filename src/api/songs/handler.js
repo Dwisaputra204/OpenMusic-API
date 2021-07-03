@@ -9,8 +9,8 @@ class SongsHandler {
     this.postSongHandler = this.postSongHandler.bind(this);
     this.getSongsHandler = this.getSongsHandler.bind(this);
     this.getSongByIdHandler = this.getSongByIdHandler.bind(this);
-    // this.putSongByIdHandler = this.putSongByIdHandler.bind(this);
-    // this.deleteSongByIdHandler = this.deleteSongByIdHandler.bind(this);
+    this.putSongByIdHandler = this.putSongByIdHandler.bind(this);
+    this.deleteSongByIdHandler = this.deleteSongByIdHandler.bind(this);
   }
 
   postSongHandler(request, h) {
@@ -26,7 +26,7 @@ class SongsHandler {
 
       const response = h.response({
         status: 'success',
-        message: 'Song berhasil ditambahkan',
+        message: 'Lagu berhasil ditambahkan',
         data: {
           songId,
         },
@@ -95,67 +95,67 @@ class SongsHandler {
     }
   }
 
-  // putSongByIdHandler(request, h) {
-  //   try {
-  //     this._validator.validateNotePayload(request.payload);
-  //     const { id } = request.params;
+  putSongByIdHandler(request, h) {
+    try {
+      this._validator.validateSongPayload(request.payload);
+      const { id } = request.params;
 
-  //     this._service.editNoteById(id, request.payload);
+      this._service.editSongById(id, request.payload);
 
-  //     return {
-  //       status: 'success',
-  //       message: 'Catatan berhasil diperbarui',
-  //     };
-  //   } catch (error) {
-  //     if (error instanceof ClientError) {
-  //       const response = h.response({
-  //         status: 'fail',
-  //         message: error.message,
-  //       });
-  //       response.code(error.statusCode);
-  //       return response;
-  //     }
+      return {
+        status: 'success',
+        message: 'Song berhasil diperbarui',
+      };
+    } catch (error) {
+      if (error instanceof ClientError) {
+        const response = h.response({
+          status: 'fail',
+          message: error.message,
+        });
+        response.code(error.statusCode);
+        return response;
+      }
 
-  //     // Server ERROR!
-  //     const response = h.response({
-  //       status: 'error',
-  //       message: 'Maaf, terjadi kegagalan pada server kami.',
-  //     });
-  //     response.code(500);
-  //     console.error(error);
-  //     return response;
-  //   }
-  // }
+      // Server ERROR!
+      const response = h.response({
+        status: 'error',
+        message: 'Maaf, terjadi kegagalan pada server kami.',
+      });
+      response.code(500);
+      console.error(error);
+      return response;
+    }
+  }
 
-  // deleteSongByIdHandler(request, h) {
-  //   try {
-  //     const { id } = request.params;
-  //     this._service.deleteNoteById(id);
+  deleteSongByIdHandler(request, h) {
+    try {
+      const { songId } = request.params;
+      this._service.deleteSongById(songId);
 
-  //     return {
-  //       status: 'success',
-  //       message: 'Catatan berhasil dihapus',
-  //     };
-  //   } catch (error) {
-  //     if (error instanceof ClientError) {
-  //       const response = h.response({
-  //         status: 'fail',
-  //         message: error.message,
-  //       });
-  //       response.code(error.statusCode);
-  //       return response;
-  //     }
+      return {
+        status: 'success',
+        message: 'lagu berhasil dihapus',
+      };
+    } catch (error) {
+      if (error instanceof ClientError) {
+        const response = h.response({
+          status: 'fail',
+          message: error.message,
+        });
+        response.code(error.statusCode);
+        return response;
+      }
 
-  //     // Server ERROR!
-  //     const response = h.response({
-  //       status: 'error',
-  //       message: 'Maaf, terjadi kegagalan pada server kami.',
-  //     });
-  //     response.code(500);
-  //     console.error(error);
-  //     return response;
-  //   }
-  // }
+      // Server ERROR!
+      const response = h.response({
+        status: 'error',
+        message: 'Maaf, terjadi kegagalan pada server kami.',
+      });
+      response.code(500);
+      console.error(error);
+      return response;
+    }
+  }
 }
 
 module.exports = SongsHandler;

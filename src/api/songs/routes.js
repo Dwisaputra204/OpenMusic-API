@@ -14,16 +14,16 @@ const routes = (handler) => [
     path: '/songs/{id}',
     handler: handler.getSongByIdHandler,
   },
-  // {
-  //   method: 'PUT',
-  //   path: '/songs/{id}',
-  //   handler: handler.putNoteByIdHandler,
-  // },
-  // {
-  //   method: 'DELETE',
-  //   path: '/songs/{id}',
-  //   handler: handler.deleteNoteByIdHandler,
-  // },
+  {
+    method: 'PUT',
+    path: '/songs/{id}',
+    handler: handler.putSongByIdHandler,
+  },
+  {
+    method: 'DELETE',
+    path: '/songs/{songId}',
+    handler: handler.deleteSongByIdHandler,
+  },
 ];
 
 module.exports = routes;
