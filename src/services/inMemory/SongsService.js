@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 const { nanoid } = require('nanoid');
 const InvariantError = require('../../exceptions/InvariantError');
@@ -17,33 +16,28 @@ class SongsService {
     const updatedAt = insertedAt;
 
     const newSong = {
-      id, title, year, performer, genre, duration, insertedAt, updatedAt,
+      title, year, performer, genre, duration, id, insertedAt, updatedAt,
     };
 
     this._songs.push(newSong);
+
     const isSuccess = this._songs.filter((song) => song.id === id).length > 0;
+
     if (!isSuccess) {
-      throw new InvariantError('song gagal ditambahkan');
+      throw new InvariantError('Lagu gagal ditambahkan');
     }
 
     return id;
   }
 
   getSongs() {
-    const songs = this._songs.map((song) => (
-      {
-        id: song.id,
-        title: song.title,
-        performer: song.performer,
-      }
-    ));
-    return songs;
+    return this._songs;
   }
 
   getSongById(id) {
     const song = this._songs.filter((n) => n.id === id)[0];
     if (!song) {
-      throw new NotFoundError('Song tidak ditemukan');
+      throw new NotFoundError('Lagu tidak ditemukan');
     }
     return song;
   }
@@ -54,7 +48,7 @@ class SongsService {
     const index = this._songs.findIndex((song) => song.id === id);
 
     if (index === -1) {
-      throw new NotFoundError('Gagal memperbarui song. Id tidak ditemukan');
+      throw new NotFoundError('Gagal memperbarui lagu. Id tidak ditemukan');
     }
 
     const updatedAt = new Date().toISOString();
@@ -73,7 +67,7 @@ class SongsService {
   deleteSongById(id) {
     const index = this._songs.findIndex((song) => song.id === id);
     if (index === -1) {
-      throw new NotFoundError('lagu gagal dihapus. Id tidak ditemukan');
+      throw new NotFoundError('Lagu gagal dihapus. Id tidak ditemukan');
     }
     this._songs.splice(index, 1);
   }
