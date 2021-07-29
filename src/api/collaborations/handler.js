@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const ClientError = require('../../exceptions/ClientError');
 
 class CollaborationsHandler {
@@ -5,7 +6,6 @@ class CollaborationsHandler {
     this._collaborationsService = collaborationsService;
     this._songsService = songsService;
     this._validator = validator;
-
     this.postCollaborationHandler = this.postCollaborationHandler.bind(this);
     this.deleteCollaborationHandler = this.deleteCollaborationHandler.bind(this);
   }
@@ -41,7 +41,7 @@ class CollaborationsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -75,7 +75,7 @@ class CollaborationsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);

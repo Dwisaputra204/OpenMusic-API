@@ -5,7 +5,6 @@ class SongsHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
-
     this.postSongHandler = this.postSongHandler.bind(this);
     this.getSongsHandler = this.getSongsHandler.bind(this);
     this.getSongByIdHandler = this.getSongByIdHandler.bind(this);
@@ -46,7 +45,7 @@ class SongsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -91,7 +90,7 @@ class SongsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -123,7 +122,7 @@ class SongsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -153,7 +152,7 @@ class SongsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -161,5 +160,4 @@ class SongsHandler {
     }
   }
 }
-
 module.exports = SongsHandler;

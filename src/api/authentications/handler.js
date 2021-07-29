@@ -7,7 +7,6 @@ class AuthenticationsHandler {
     this._usersService = usersService;
     this._tokenManager = tokenManager;
     this._validator = validator;
-
     this.postAuthenticationHandler = this.postAuthenticationHandler.bind(this);
     this.putAuthenticationHandler = this.putAuthenticationHandler.bind(this);
     this.deleteAuthenticationHandler = this.deleteAuthenticationHandler.bind(this);
@@ -48,7 +47,7 @@ class AuthenticationsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -85,7 +84,7 @@ class AuthenticationsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
@@ -118,7 +117,7 @@ class AuthenticationsHandler {
       // Server ERROR!
       const response = h.response({
         status: 'error',
-        message: 'Maaf, terjadi kegagalan pada server kami.',
+        message: 'Ups, Terjadi kesalah pada server.',
       });
       response.code(500);
       console.error(error);
