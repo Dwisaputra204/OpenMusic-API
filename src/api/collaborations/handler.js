@@ -15,7 +15,6 @@ class CollaborationsHandler {
       this._validator.validateCollaborationPayload(request.payload);
       const { id: credentialId } = request.auth.credentials;
       const { songId, userId } = request.payload;
-
       await this._songsService.verifySongOwner(songId, credentialId);
       const collaborationId = await this._collaborationsService.addCollaboration(songId, userId);
 

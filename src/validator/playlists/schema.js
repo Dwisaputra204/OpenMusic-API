@@ -1,23 +1,14 @@
-/* eslint-disable import/no-self-import */
-const {
+const Joi = require('joi');
+
+const PostPlaylistPayloadSchema = Joi.object({
+  name: Joi.string().required(),
+});
+
+const PostSongPayloadSchema = Joi.object({
+  songId: Joi.string().required(),
+});
+
+module.exports = {
   PostPlaylistPayloadSchema,
   PostSongPayloadSchema,
-} = require('./schema');
-const InvariantError = require('../../exceptions/InvariantError');
-
-const PlaylistsValidator = {
-  validatePostPlaylistPayload: (payload) => {
-    const validationResult = PostPlaylistPayloadSchema.validate(payload);
-    if (validationResult.error) {
-      throw new InvariantError(validationResult.error.message);
-    }
-  },
-  validatePostSongPayload: (payload) => {
-    const validationResult = PostSongPayloadSchema.validate(payload);
-    if (validationResult.error) {
-      throw new InvariantError(validationResult.error.message);
-    }
-  },
 };
-
-module.exports = PlaylistsValidator;
